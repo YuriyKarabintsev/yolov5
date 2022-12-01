@@ -78,6 +78,10 @@ def run(
         dnn=False,  # use OpenCV DNN for ONNX inference
         vid_stride=1,  # video frame-rate stride
 ):
+    out_file = open("answer_labels.txt", mode="w", encoding="utf-8")
+    
+    
+    
     source = str(source)
     save_img = not nosave and not source.endswith('.txt')  # save inference images
     is_file = Path(source).suffix[1:] in (IMG_FORMATS + VID_FORMATS)
@@ -134,6 +138,7 @@ def run(
 
         # Process predictions
         for i, det in enumerate(pred):  # per image
+            out_file.write(pred)
             print(pred, "ПРЕДСКАЗАНИЕ")
             seen += 1
             if webcam:  # batch_size >= 1
