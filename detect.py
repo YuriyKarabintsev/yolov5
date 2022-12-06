@@ -139,7 +139,7 @@ def run(
         # Process predictions
         for i, det in enumerate(pred):  # per image
             print(pred, "ПРЕДСКАЗАНИЕ")
-            out_data = " ".join([int(pr) for pr in pred[0][0]])
+            out_data = " ".join([int(pr) for pr in pred[0]])
             out_file.write(out_data + " ")
             seen += 1
             if webcam:  # batch_size >= 1
