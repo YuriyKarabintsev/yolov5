@@ -166,6 +166,7 @@ def run(
 
                 # Write results
                 for *xyxy, conf, cls in reversed(det):
+                    print(xyxy, "COORDINATES")
                     if save_txt:  # Write to file
                         xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
                         line = (cls, *xywh, conf) if save_conf else (cls, *xywh)  # label format
@@ -183,6 +184,7 @@ def run(
 
             # Stream results
             im0 = annotator.result()
+            print(im0.shape[0], im0.shape[1], "IMAGE ZERO")
             if view_img:
                 if platform.system() == 'Linux' and p not in windows:
                     windows.append(p)
@@ -207,6 +209,7 @@ def run(
                         else:  # stream
                             fps, w, h = 30, im0.shape[1], im0.shape[0]
                         save_path = str(Path(save_path).with_suffix('.mp4'))  # force *.mp4 suffix on results videos
+                        print(w, h, "WIDTH AND HEIGHT")
                         vid_writer[i] = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (w, h))
                     vid_writer[i].write(im0)
 
