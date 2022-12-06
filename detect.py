@@ -139,7 +139,7 @@ def run(
         # Process predictions
         for i, det in enumerate(pred):  # per image
             print(pred, "ПРЕДСКАЗАНИЕ")
-            out_file.write(" ".join([str(q) for q in pred]))
+            #out_file.write(" ".join([str(q) for q in pred]))
             seen += 1
             if webcam:  # batch_size >= 1
                 p, im0, frame = path[i], im0s[i].copy(), dataset.count
@@ -176,6 +176,7 @@ def run(
                         c = int(cls)  # integer class
                         label = None if hide_labels else (names[c] if hide_conf else f'{names[c]} {conf:.2f}')
                         print(label, "LABEL")
+                        out_file.write(" ".join([str(l) for l in label]) + "\n")
                         annotator.box_label(xyxy, label, color=colors(c, True))
                     if save_crop:
                         save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
